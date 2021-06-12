@@ -1,23 +1,33 @@
 extends State
 
-onready var host = get_parent().get_parent()
 
 var move_speed = 700
-var max_speed = 12000
+var slowdown_speed = 2000
 
 var damage_per_frame = 10
-
-var tumble_magnitude = 2
 
 func enter():
 	print("entering zombo")
 	change_skin_color()
+	host.get_node("RunRadius").queue_free()
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	apply_player_input(delta)
+	var input = apply_player_input(delta)
+	print(input.length())
+#	if input.length() == 0:
+	apply_slowdown_force(delta)
 
+func apply_slowdown_force(delta):
+	print("applying slowdown")
+	if Input.is_action_just_released("move_backward") or Input.is_action_just_released("move_forward"):
+		var inv_z = -Vector3(0, 0, host.linear_velocity.z) * slowdown_speed * delta
+		host.add_central_force(inv_z)
+	if Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
+		var inv_x = -Vector3(host.linear_velocity.x, 0, 0) * slowdown_speed * delta
+		host.add_central_force(inv_x)
+	
 
 func apply_player_input(delta):
 	var input = Vector3(
@@ -26,12 +36,11 @@ func apply_player_input(delta):
 		Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
 	).normalized() * move_speed * delta
 	
-	host.add_force(input, Vector3(0, tumble_magnitude, 0))
+	host.add_force(input, tumble_vector)
+	
+	return input
 
-func _integrate_forces(state):
-	if state.linear_velocity.length() > max_speed:
-		state.linear_velocity=state.linear_velocity.normalized() * max_speed
-		
+
 func change_skin_color():
 	var mat = host.get_node("Skin").get_mesh().surface_get_material(0)
 	mat.albedo_color = Color(.2, 1, .2, 1)
