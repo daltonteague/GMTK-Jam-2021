@@ -4,8 +4,11 @@ export var skin : Material
 
 var move_speed = 700
 var slowdown_speed = 2000
+var death_pop_force = 500
 
 var damage_per_frame = 10
+
+signal zombie_dead
 
 func enter():
 	print("entering zombo")
@@ -18,7 +21,6 @@ func _physics_process(delta):
 	apply_slowdown_force(delta)
 
 func apply_slowdown_force(delta):
-	print("applying slowdown")
 	if Input.is_action_just_released("move_backward") or Input.is_action_just_released("move_forward"):
 		var inv_z = -Vector3(0, 0, host.linear_velocity.z) * slowdown_speed * delta
 		host.add_force(inv_z, Vector3.ZERO)
@@ -49,3 +51,13 @@ func change_skin(material):
 
 func get_infection_damage():
 	return damage_per_frame
+	
+func take_damage(damage):
+	if current_health <= 0:
+		return
+	current_health -= damage
+	
+	if current_health <= 0:
+		host.add_central_force(Vector3.UP * death_pop_force)
+		emit_signal("zombie_dead")
+		emit_signal("change_state", "Dead")

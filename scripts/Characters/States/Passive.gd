@@ -3,16 +3,11 @@ extends State
 export var start_skin : Material
 export var zombie_skin : Material
 
-var max_health : int = 1000
-var current_health : int = max_health
-
 var current_damage_per_frame = 0
 
 var closest_zombie
 var run_speed = 500
 var move_vector = get_wander_vector()
-
-signal change_state
 
 func enter():
 	change_skin(start_skin)
@@ -41,7 +36,7 @@ func interpolate_skin_color():
 	var current_skin = host.get_node("Skin").get_mesh().surface_get_material(0).duplicate()
 	var percent_health = float(current_health) / max_health
 	
-	print([zombie_skin.albedo_color.r, current_skin.albedo_color.r, percent_health])
+#	print([zombie_skin.albedo_color.r, current_skin.albedo_color.r, percent_health])
 	
 	var new_color = lerp(zombie_skin.albedo_color, start_skin.albedo_color, percent_health)
 

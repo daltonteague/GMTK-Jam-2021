@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/Characters/States/Passive.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Characters/States/Zombie.gd" type="Script" id=2]
 [ext_resource path="res://scripts/Characters/States/StateMachine.gd" type="Script" id=3]
 [ext_resource path="res://materials/Human.tres" type="Material" id=4]
 [ext_resource path="res://materials/Zombie.tres" type="Material" id=5]
+[ext_resource path="res://scripts/Dead.gd" type="Script" id=6]
 
 [sub_resource type="CubeMesh" id=1]
 resource_local_to_scene = true
@@ -55,6 +56,7 @@ skin = ExtResource( 5 )
 [node name="Agressive" type="Node" parent="States"]
 
 [node name="Dead" type="Node" parent="States"]
+script = ExtResource( 6 )
 
 [node name="RigidBody" type="CollisionShape" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )

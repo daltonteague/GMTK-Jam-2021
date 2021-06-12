@@ -8,6 +8,11 @@ onready var tumble_magnitude = 1.5
 
 onready var tumble_vector = Vector3(0, tumble_magnitude, 0)
 
+onready var max_health : int = 1000
+onready var current_health : int = max_health
+
+signal change_state
+
 func enter():
 	pass
 	
