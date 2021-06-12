@@ -10,9 +10,9 @@ func _process(delta):
 
 func _on_Area_body_entered(body):
 	print(body.get_name())
-	if(body.has_method("get_state") and body.get_state().has_method("take_damage")):
+	if body.has_method("get_state") and body.get_state().has_method("take_damage"):
 		damage_body = body.get_state()
 
 func _on_Area_body_exited(body):
-	if body.get_state() == damage_body:
+	if body.has_method("get_state") and body.get_state() == damage_body:
 		damage_body = null
