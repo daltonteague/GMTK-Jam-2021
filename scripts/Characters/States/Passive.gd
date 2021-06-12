@@ -1,5 +1,7 @@
 extends State
 
+onready var blood_splash = preload("res://scenes/BloodSplash.tscn")
+
 export var start_skin : Material
 export var zombie_skin : Material
 
@@ -13,17 +15,16 @@ var run_speed = 500
 var move_vector = get_wander_vector()
 
 signal change_state
+signal infected(blood_splash, transform)
 
 func enter():
 	change_skin(start_skin)
 
 func exit():
-	pass
+	emit_signal("infected", blood_splash, host.global_transform)
 
 func _ready():
-	print([start_skin.albedo_color.r, start_skin.albedo_color.g, start_skin.albedo_color.b])
-	print([zombie_skin.albedo_color.r, zombie_skin.albedo_color.g, zombie_skin.albedo_color.b])
-	print(host.get_node("Skin").get_mesh().surface_get_material(0))
+	pass
 	
 
 func _process(delta):
@@ -40,9 +41,6 @@ func _process(delta):
 func interpolate_skin_color():
 	var current_skin = host.get_node("Skin").get_mesh().surface_get_material(0).duplicate()
 	var percent_health = float(current_health) / max_health
-	
-#	print([zombie_skin.albedo_color.r, current_skin.albedo_color.r, percent_health])
-	
 	var new_color = lerp(zombie_skin.albedo_color, start_skin.albedo_color, percent_health)
 
 	current_skin.albedo_color = new_color
@@ -63,6 +61,7 @@ func run_from_zombies():
 
 func change_skin(material):
 	host.get_node("Skin").get_mesh().surface_set_material(0, material)
+	
 
 func _on_InfectionRadius_area_entered(area):
 	current_damage_per_frame += get_damage_if_zombie(area)

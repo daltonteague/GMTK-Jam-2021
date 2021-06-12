@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/CharacterController.gd" type="Script" id=2]
-[ext_resource path="res://scripts/GameController.gd" type="Script" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.227451, 0.501961, 0.196078, 1 )
@@ -15,7 +14,6 @@ size = Vector2( 6, 6 )
 extents = Vector3( 3, 0.0147195, 3 )
 
 [node name="World" type="Spatial"]
-script = ExtResource( 3 )
 
 [node name="Ground" type="StaticBody" parent="."]
 transform = Transform( 23.672, 0, 0, 0, 23.672, 0, 0, 0, 23.672, 0, 0, 0 )
@@ -29,8 +27,7 @@ material/0 = null
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.836047, 0.548658, 0, -0.548658, 0.836047, 0.581663, 25.0702, 41.6797 )
-far = 800.0
+transform = Transform( 1, 0, 0, 0, 0.836047, 0.548658, 0, -0.548658, 0.836047, 0.581663, 20.0702, 16.6797 )
 
 [node name="Zombie" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.941, 4.29131, 0 )
