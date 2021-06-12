@@ -61,7 +61,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.3247, -16 )
 script = ExtResource( 2 )
 
 [node name="Char" parent="Passive" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.20145, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -5.20145, 27 )
 
 [node name="Gunner" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 10.3247, -16 )

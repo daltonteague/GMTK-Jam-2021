@@ -1,5 +1,8 @@
 extends BaseNPC
 
+func enter():
+	change_skin(start_skin)
+
 func _process(delta):
 	run_from_zombies(delta)
 

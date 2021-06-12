@@ -1,6 +1,8 @@
 extends State
 class_name BaseNPC
 
+onready var blood_splash = preload("res://scenes/BloodSplash.tscn")
+
 export var start_skin : Material
 export var zombie_skin : Material
 
@@ -10,11 +12,14 @@ var closest_zombie
 var run_speed = 500
 var move_vector = get_wander_vector()
 
+signal infected(blood_splash, transform)
+
 func enter():
 	change_skin(start_skin)
 
 func exit():
-	pass
+	print("exiting base")
+	emit_signal("infected", blood_splash, host.global_transform)
 
 func _ready():
 	host.get_node("SightRadius").connect("area_entered", self, "_on_SightRadius_area_entered")
