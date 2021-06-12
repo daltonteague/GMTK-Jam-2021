@@ -6,7 +6,7 @@ onready var timer = $Timer
 onready var explosion_particles = $ExplosionParticles
 onready var collider = $Shot
 
-var speed = 100
+var speed = 20
 var velocity = Vector3()
 var despawn_time = 5
 
