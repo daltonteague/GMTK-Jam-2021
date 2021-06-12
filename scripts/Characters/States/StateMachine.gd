@@ -3,7 +3,7 @@ extends Node
 onready var states = {
 	"Passive" : $States/Passive,
 	"Zombie" : $States/Zombie,
-#	"Aggressive" : $States/Aggressive,
+	"Aggressive" : $States/Aggressive,
 	"Dead" : $States/Dead
 }
 

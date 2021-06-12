@@ -13,7 +13,7 @@ signal zombie_dead
 func enter():
 	print("entering zombo")
 	change_skin_color()
-	host.get_node("RunRadius").queue_free()
+	host.get_node("SightRadius").queue_free()
 	pass
 
 func _physics_process(delta):
