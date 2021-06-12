@@ -20,6 +20,7 @@ func exit():
 func _process(delta):
 	current_health -= current_damage_per_frame
 	if current_health <= 0:
+		anim_player.play("Bounce")
 		emit_signal("change_state", "Zombie")
 	
 	run_from_zombies()

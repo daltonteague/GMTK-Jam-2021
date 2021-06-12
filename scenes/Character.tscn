@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Characters/States/Passive.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Characters/States/Zombie.gd" type="Script" id=2]
@@ -13,12 +13,30 @@ material = ExtResource( 4 )
 
 [sub_resource type="SphereShape" id=3]
 
+[sub_resource type="Animation" id=5]
+resource_name = "Bounce"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skin:transform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 1.623, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.715, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.113, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 1.774, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.098, 0, 0, 0, 2, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "New Anim"
+
 [node name="BaseCharacter" type="RigidBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.61918, 0 )
 script = ExtResource( 3 )
 
 [node name="Skin" type="MeshInstance" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+transform = Transform( 2, 0, 0, 0, 2.0196, 0, 0, 0, 2, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -50,6 +68,10 @@ transform = Transform( 8.25834, 0, 0, 0, 8.25834, 0, 0, 0, 8.25834, 0, 0, 0 )
 [node name="Collision" type="CollisionShape" parent="RunRadius"]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
 shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Bounce = SubResource( 5 )
+"anims/New Anim" = SubResource( 6 )
 
 [connection signal="area_entered" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_entered"]
 [connection signal="area_exited" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_exited"]

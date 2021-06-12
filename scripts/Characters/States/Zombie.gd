@@ -1,6 +1,5 @@
 extends State
 
-
 var move_speed = 700
 var slowdown_speed = 2000
 
@@ -23,10 +22,10 @@ func apply_slowdown_force(delta):
 	print("applying slowdown")
 	if Input.is_action_just_released("move_backward") or Input.is_action_just_released("move_forward"):
 		var inv_z = -Vector3(0, 0, host.linear_velocity.z) * slowdown_speed * delta
-		host.add_central_force(inv_z)
+		host.add_force(inv_z, Vector3.ZERO)
 	if Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
 		var inv_x = -Vector3(host.linear_velocity.x, 0, 0) * slowdown_speed * delta
-		host.add_central_force(inv_x)
+		host.add_force(inv_x, Vector3.ZERO)
 	
 
 func apply_player_input(delta):
