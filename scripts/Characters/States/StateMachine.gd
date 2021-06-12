@@ -13,7 +13,6 @@ func _ready():
 	for state in states:
 		states[state].connect("change_state", self, "change_state")
 		exit_state(states[state])
-		# Connect state signal here
 	
 func get_state():
 	return current_state
