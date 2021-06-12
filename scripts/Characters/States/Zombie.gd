@@ -1,5 +1,7 @@
 extends State
 
+export var skin : Material
+
 var move_speed = 700
 var slowdown_speed = 2000
 
@@ -27,6 +29,7 @@ func apply_slowdown_force(delta):
 		var inv_x = -Vector3(host.linear_velocity.x, 0, 0) * slowdown_speed * delta
 		host.add_force(inv_x, Vector3.ZERO)
 	
+	change_skin(skin)
 
 func apply_player_input(delta):
 	var input = Vector3(
@@ -39,11 +42,13 @@ func apply_player_input(delta):
 	
 	return input
 
-
 func change_skin_color():
 	var mat = host.get_node("Skin").get_mesh().surface_get_material(0)
 	mat.albedo_color = Color(.2, 1, .2, 1)
 	host.get_node("Skin").get_mesh().surface_set_material(0, mat)
+	
+func change_skin(material):
+	host.get_node("Skin").get_mesh().surface_set_material(0, material)
 
 func get_infection_damage():
 	return damage_per_frame

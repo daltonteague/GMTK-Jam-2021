@@ -33,14 +33,16 @@ transform = Transform( 1, 0, 0, 0, 0.836047, 0.548658, 0, -0.548658, 0.836047, 0
 far = 800.0
 
 [node name="Zombie" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.24727, 21 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.941, 4.29131, 0 )
 script = ExtResource( 2 )
 starting_state = "Zombie"
 
 [node name="Char" parent="Zombie" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Passive" type="Spatial" parent="."]
-transform = Transform( -0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 0, 0, -35 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.3247, -16 )
 script = ExtResource( 2 )
 
 [node name="Char" parent="Passive" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.20145, 0 )
