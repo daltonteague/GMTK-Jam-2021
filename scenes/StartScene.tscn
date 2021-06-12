@@ -29,14 +29,15 @@ shape = SubResource( 3 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.836047, 0.548658, 0, -0.548658, 0.836047, 0.581663, 20.0702, 16.6797 )
 
-[node name="Player" type="Spatial" parent="."]
+[node name="Zombie" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.24727, 0 )
 script = ExtResource( 2 )
 starting_state = "Zombie"
 
-[node name="Char" parent="Player" instance=ExtResource( 1 )]
+[node name="Char" parent="Zombie" instance=ExtResource( 1 )]
 
-[node name="Player2" type="Spatial" parent="."]
+[node name="Passive" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16 )
 script = ExtResource( 2 )
 
-[node name="Char" parent="Player2" instance=ExtResource( 1 )]
+[node name="Char" parent="Passive" instance=ExtResource( 1 )]

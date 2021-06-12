@@ -11,8 +11,12 @@ var current_state
 
 func _ready():
 	for state in states:
+		states[state].connect("change_state", self, "change_state")
 		exit_state(states[state])
 		# Connect state signal here
+	
+func get_state():
+	return current_state
 	
 func change_state(next_state):
 	print(get_parent().get_name() + " changing state " + next_state) 

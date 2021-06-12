@@ -5,7 +5,9 @@ onready var host = get_parent().get_parent()
 var move_speed = 700
 var max_speed = 12000
 
-var tumble_magnitude = 1
+var damage_per_frame = 10
+
+var tumble_magnitude = 2
 
 func enter():
 	print("entering zombo")
@@ -34,3 +36,6 @@ func change_skin_color():
 	var mat = host.get_node("Skin").get_mesh().surface_get_material(0)
 	mat.albedo_color = Color(.2, 1, .2, 1)
 	host.get_node("Skin").get_mesh().surface_set_material(0, mat)
+
+func get_infection_damage():
+	return damage_per_frame

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Characters/States/Passive.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Characters/States/Zombie.gd" type="Script" id=2]
@@ -11,6 +11,8 @@ material = ExtResource( 4 )
 
 [sub_resource type="BoxShape" id=2]
 
+[sub_resource type="SphereShape" id=3]
+
 [node name="BaseCharacter" type="RigidBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.61918, 0 )
 script = ExtResource( 3 )
@@ -19,10 +21,6 @@ script = ExtResource( 3 )
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
-shape = SubResource( 2 )
 
 [node name="States" type="Node" parent="."]
 
@@ -35,3 +33,16 @@ script = ExtResource( 2 )
 [node name="Agressive" type="Node" parent="States"]
 
 [node name="Dead" type="Node" parent="States"]
+
+[node name="RigidBody" type="CollisionShape" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="InfectionRadius" type="Area" parent="."]
+
+[node name="Collision" type="CollisionShape" parent="InfectionRadius"]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_entered"]
+[connection signal="area_exited" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_exited"]
