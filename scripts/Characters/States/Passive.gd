@@ -41,7 +41,7 @@ func interpolate_skin_color():
 	var current_skin = host.get_node("Skin").get_mesh().surface_get_material(0).duplicate()
 	var percent_health = float(current_health) / max_health
 	
-	print([zombie_skin.albedo_color.r, current_skin.albedo_color.r, percent_health])
+#	print([zombie_skin.albedo_color.r, current_skin.albedo_color.r, percent_health])
 	
 	var new_color = lerp(zombie_skin.albedo_color, start_skin.albedo_color, percent_health)
 

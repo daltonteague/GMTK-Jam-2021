@@ -18,7 +18,6 @@ func _physics_process(delta):
 	apply_slowdown_force(delta)
 
 func apply_slowdown_force(delta):
-	print("applying slowdown")
 	if Input.is_action_just_released("move_backward") or Input.is_action_just_released("move_forward"):
 		var inv_z = -Vector3(0, 0, host.linear_velocity.z) * slowdown_speed * delta
 		host.add_force(inv_z, Vector3.ZERO)
