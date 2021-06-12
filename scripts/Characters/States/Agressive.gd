@@ -16,6 +16,7 @@ func _process(delta):
 	if closest_zombie:
 		host.look_at(closest_zombie.global_transform.origin, Vector3.UP)
 #		host.rotate_y(deg2rad(180))
+		gun.enter(closest_zombie)
 		gun_anim.play("Fire")
 	else:
 		gun_anim.stop()

@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://materials/Material.material" type="Material" id=1]
-[ext_resource path="res://scenes/Bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Rifle.gd" type="Script" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
@@ -96,7 +95,5 @@ anims/Fire = SubResource( 2 )
 transform = Transform( 0.0292015, 0, 0, 0, 0.0292015, 0, 0, 0, 0.0292015, 0, 0.496311, 1.41389 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
-
-[node name="Bullet" parent="." instance=ExtResource( 2 )]
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
