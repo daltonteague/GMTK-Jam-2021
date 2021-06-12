@@ -13,11 +13,8 @@ func enter():
 	host.get_node("RunRadius").queue_free()
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var input = apply_player_input(delta)
-	print(input.length())
-#	if input.length() == 0:
 	apply_slowdown_force(delta)
 
 func apply_slowdown_force(delta):
