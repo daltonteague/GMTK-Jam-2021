@@ -21,7 +21,7 @@ func _on_Aggressive_infected(blood_splash, transform):
 func _on_Zombie_infected(blood_splash, transform):
 	var rng = randi() % 41
 	var hurt_sound
-	if rng == 51:
+	if rng == 41:
 		hurt_sound = rare_hurt_sound
 	else:
 		var idx = rng % hurt_sounds.size()
