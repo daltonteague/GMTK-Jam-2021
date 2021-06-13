@@ -103,4 +103,4 @@ func get_zombie_state(area):
 func get_wander_vector():
 	randomize()
 	var direction = wander_directions[randi() % wander_directions.size()]
-	return direction * run_speed * .8 * 0
+	return direction * run_speed * .8

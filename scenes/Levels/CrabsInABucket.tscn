@@ -1,41 +1,39 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/CharacterController.gd" type="Script" id=2]
-[ext_resource path="res://scripts/GameController.gd" type="Script" id=3]
-[ext_resource path="res://materials/obstacle.tres" type="Material" id=4]
-[ext_resource path="res://scenes/UI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/GameController.gd" type="Script" id=2]
+[ext_resource path="res://materials/obstacle.tres" type="Material" id=3]
+[ext_resource path="res://scripts/CharacterController.gd" type="Script" id=4]
+[ext_resource path="res://scenes/LevelText.tscn" type="PackedScene" id=5]
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="PhysicsMaterial" id=1]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="CubeMesh" id=2]
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="BoxShape" id=3]
 
-[sub_resource type="BoxShape" id=4]
-
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.282353, 0.341176, 0.0745098, 1 )
 
-[sub_resource type="PlaneMesh" id=6]
-material = SubResource( 5 )
+[sub_resource type="PlaneMesh" id=5]
+material = SubResource( 4 )
 size = Vector2( 6, 6 )
 
-[sub_resource type="BoxShape" id=7]
+[sub_resource type="BoxShape" id=6]
 extents = Vector3( 3, 0.0147195, 3 )
 
-[sub_resource type="CylinderMesh" id=8]
+[sub_resource type="CylinderMesh" id=7]
 
-[sub_resource type="CylinderShape" id=9]
+[sub_resource type="CylinderShape" id=8]
 
-[sub_resource type="Skin" id=10]
+[sub_resource type="Skin" id=9]
 
 [node name="World" type="Spatial"]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.301006, 0.953622, 0, -0.953622, 0.301006, -1.42484, 89.5084, 33.4039 )
-environment = SubResource( 1 )
+current = true
 far = 800.0
 
 [node name="Main Light" type="DirectionalLight" parent="."]
@@ -56,7 +54,7 @@ shadow_contact = 1.0
 
 [node name="Zombie" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.0519, 4.29131, 15.1037 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 starting_state = "Zombie"
 
 [node name="Char" parent="Zombie" instance=ExtResource( 1 )]
@@ -66,59 +64,59 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46.7504, 0, 26.0493 )
 
 [node name="Wall" type="StaticBody" parent="Terrain"]
 transform = Transform( 60, 0, 0, 0, 6, 0, 0, 0, 1, 0, 5, -60 )
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain/Wall"]
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Wall"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Wall2" type="StaticBody" parent="Terrain"]
 transform = Transform( 60, 0, 0, 0, 6, 0, 0, 0, 1, 0, 5, 60 )
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain/Wall2"]
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Wall2"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Wall3" type="StaticBody" parent="Terrain"]
 transform = Transform( -2.62268e-06, 0, 1, 0, 6, 0, -60, 0, -4.37114e-08, 59.2677, 5.0942, -0.701027 )
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain/Wall3"]
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Wall3"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Wall4" type="StaticBody" parent="Terrain"]
 transform = Transform( -2.62268e-06, 0, 1, 0, 6, 0, -60, 0, -4.37114e-08, -59.716, 5.00001, 0.0758514 )
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain/Wall4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 2.27374e-13, 0, 1, 0, 0, 0 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Wall4"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Ground" type="StaticBody" parent="Terrain"]
 transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, -1.8246, 0.895149, 1.1184 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain/Ground"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00115156, 0.0161868, -0.0158365 )
-mesh = SubResource( 6 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Ground"]
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="Obstacle1" type="StaticBody" parent="Terrain"]
 transform = Transform( 6.11119, 0, 0, 0, 14.6922, 0, 0, 0, 6.11119, 0, 4.03352, 0 )
@@ -127,11 +125,11 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain/Obstacle1"]
-mesh = SubResource( 8 )
-material/0 = ExtResource( 4 )
+mesh = SubResource( 7 )
+material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Obstacle1"]
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="Obstacle2" type="StaticBody" parent="Terrain"]
 transform = Transform( 0.23213, 4.55319, -5.80568, -6.03085, -2.02488, -0.515886, -0.960017, 13.8213, 1.837, -26.8766, -1.92026, 0 )
@@ -141,12 +139,12 @@ __meta__ = {
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain/Obstacle2"]
 transform = Transform( 1, 8.9407e-08, 0, 2.23517e-08, 1, -6.70552e-08, -1.86265e-08, -5.96046e-08, 1, 0, 0, 0 )
-mesh = SubResource( 8 )
-skin = SubResource( 10 )
-material/0 = ExtResource( 4 )
+mesh = SubResource( 7 )
+skin = SubResource( 9 )
+material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Obstacle2"]
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="Obstacle3" type="StaticBody" parent="Terrain"]
 transform = Transform( -1.62346, 18.2817, 6.56385, -6.03085, -2.02488, -0.515886, 0.157774, -9.55051, 4.6412, 20.6255, -1.92026, 21.4959 )
@@ -155,11 +153,11 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain/Obstacle3"]
-mesh = SubResource( 8 )
-material/0 = ExtResource( 4 )
+mesh = SubResource( 7 )
+material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Obstacle3"]
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="Obstacle4" type="StaticBody" parent="Terrain"]
 transform = Transform( 0.708449, 3.88525, -5.8509, -4.82937, 8.9401, 0.442355, 3.67722, 10.9927, 1.70818, 24.4184, 5.3162, -34.0545 )
@@ -168,71 +166,71 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain/Obstacle4"]
-mesh = SubResource( 8 )
-material/0 = ExtResource( 4 )
+mesh = SubResource( 7 )
+material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Obstacle4"]
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="Passive" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.3247, -16 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Char" parent="Passive" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2561, 10.3247, -16 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Char" parent="Passive2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive3" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82481, 10.3247, -27.8821 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Char" parent="Passive3" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive4" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9533, 10.3247, -27.2803 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Char" parent="Passive4" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive5" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2094, 10.3247, -27.2803 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Char" parent="Passive5" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive6" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7781, 10.3247, -39.1625 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Char" parent="Passive6" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive7" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0767, 28.2862, -16 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Char" parent="Passive7" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive8" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.82059, 28.2862, -16 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Char" parent="Passive8" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive9" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2519, 28.2862, -27.8821 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Char" parent="Passive9" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
