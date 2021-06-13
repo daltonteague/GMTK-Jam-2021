@@ -1,6 +1,8 @@
 extends State
 class_name BaseNPC
 
+onready var sight_radius = host.get_node("SightRadius")
+onready var infection_radius = host.get_node("InfectionRadius")
 
 export var start_skin : Material
 export var zombie_skin : Material
@@ -38,8 +40,15 @@ func _process(delta):
 	if !closest_zombie:
 		host.add_force(move_vector * delta, tumble_vector)
 	
+	check_areas()
 	interpolate_skin_color()
 
+func check_areas():
+	if sight_radius.get_overlapping_areas().size() > 0 and !closest_zombie:
+		_on_SightRadius_area_entered(sight_radius.get_overlapping_areas()[0])
+	if infection_radius.get_overlapping_areas().size() > 0 and current_damage_per_frame == 0:
+		_on_InfectionRadius_area_entered(infection_radius.get_overlapping_areas()[0])
+	
 func interpolate_skin_color():
 	var current_skin = host.get_node("Skin").get_mesh().surface_get_material(0).duplicate()
 	var percent_health = float(current_health) / max_health
