@@ -89,5 +89,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 script = ExtResource( 8 )
 
 [connection signal="infected" from="States/Passive" to="Spatial" method="_on_Passive_infected"]
+[connection signal="infected" from="States/Zombie" to="Spatial" method="_on_Zombie_infected"]
 [connection signal="area_entered" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_entered"]
 [connection signal="area_exited" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_exited"]
