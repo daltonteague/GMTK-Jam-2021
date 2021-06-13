@@ -35,7 +35,7 @@ extents = Vector3( 3, 0.0147195, 3 )
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.301006, 0.953622, 0, -0.953622, 0.301006, -1.44543, 98.0304, 33.2364 )
+transform = Transform( 1, 0, 0, 0, 0.301006, 0.953622, 0, -0.953622, 0.301006, -1.44543, 39.0304, 33.2364 )
 environment = SubResource( 1 )
 current = true
 far = 800.0

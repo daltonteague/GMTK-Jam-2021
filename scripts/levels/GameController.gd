@@ -20,7 +20,7 @@ signal level_failed
 
 func enter(final_level):
 	self.final_level = final_level
-	
+		
 func _ready():
 	count_zombies()
 	count_humans()
@@ -48,6 +48,7 @@ func get_zombies():
 
 func human_infected(new_state, node):
 	human_count -= 1
+	zombie_count += 1
 	humans.erase(node)
 	zombies.append(node)
 	set_label_text()

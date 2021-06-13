@@ -16,8 +16,8 @@ func exit():
 	
 func _process(delta):
 	host.rotation.x = 0
-	gun.translation = \
-		Vector3(host.translation.x + 3, gun.translation.y, host.translation.z)
+#	gun.translation = \
+#		Vector3(host.translation.x + 3, gun.translation.y, host.translation.z)
 	
 	if closest_zombie:
 		host.look_at(closest_zombie.global_transform.origin, Vector3.UP)

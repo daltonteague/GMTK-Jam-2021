@@ -1,8 +1,9 @@
 extends Spatial
 
 onready var levels = [
-	preload("res://scenes/Levels/LevelThree.tscn"),
-	preload("res://scenes/Levels/CrabsInABucket_camera.tscn")
+	preload("res://scenes/Levels/CrabsInABucket_camera.tscn"),
+	preload("res://scenes/Levels/LevelTwo.tscn"),
+	preload("res://scenes/Levels/LevelThree.tscn")
 ]
 
 onready var start_menu = $StartMenu
@@ -36,7 +37,7 @@ func next_level():
 	current_level_idx += 1
 	
 func restart():
-#	current_level_idx = 0
+	current_level_idx = 0
 	next_level()
 	
 func game_won():

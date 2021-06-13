@@ -64,7 +64,7 @@ material = SubResource( 19 )
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.887156, 0.461469, 0, -0.461469, 0.887156, -54.4454, 34.0304, 251.236 )
+transform = Transform( 1, 0, 0, 0, 0.887156, 0.461469, 0, -0.461469, 0.887156, -54.4454, 17.0304, 251.236 )
 environment = SubResource( 1 )
 current = true
 far = 800.0
