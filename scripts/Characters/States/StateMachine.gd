@@ -13,6 +13,9 @@ func _ready():
 	for state in states:
 		states[state].connect("change_state", self, "change_state")
 		exit_state(states[state])
+
+func set_braking(is_braking):
+	self.is_braking = is_braking
 	
 func get_state():
 	return current_state
@@ -35,3 +38,10 @@ func exit_state(state):
 	state.set_process(false)
 	state.set_physics_process(false)
 	state.exit()
+
+##### RigidBody Specific Code that has to go here #########
+onready var max_speed = 40
+
+func _integrate_forces(state):
+	if state.linear_velocity.length() > max_speed:
+		state.linear_velocity = state.linear_velocity.normalized() * max_speed
