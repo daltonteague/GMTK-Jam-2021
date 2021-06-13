@@ -1,8 +1,5 @@
 extends Camera
 
-func _process(delta):
-	pass
-	
 onready var start_pos = get_camera_transform()
 var last_avg = Vector3.ZERO
 
