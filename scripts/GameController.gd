@@ -5,6 +5,10 @@ var humans = []
 var zombie_count = 0
 var human_count = 0
 
+var timer = Timer.new()
+
+signal level_complete
+
 func _ready():
 	count_zombies()
 	count_humans()
@@ -31,8 +35,21 @@ func human_infected(new_state, node):
 	human_count -= 1
 	zombies.append(node)
 	set_label_text()
+	if human_count <= 3:
+		set_finish_text()
+		timer.set_wait_time(5)
+		timer.connect("timeout", self, "change_level")
+		timer.start()
 
 func set_label_text():
 	if $LevelText/RemainingText:
 		$LevelText/RemainingText.text = "- Humans Left to Meet: " + str(human_count)
-	
+		$LevelText/FinishText.text = "Level Complete! Time to socialize some more in " + str(timer.get_wait_time())
+			
+func set_finish_text():
+	$LevelText/FinishText.text = "Level Complete! Time to socialize some more in " + str(timer.get_wait_time())
+	$LevelText/FinishText.visible = true
+
+func change_level():
+	print("timer timed out")
+	emit_signal("level_complete")

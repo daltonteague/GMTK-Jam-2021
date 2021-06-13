@@ -1,12 +1,10 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://scenes/Helmet2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Rifle.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/LevelText.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Helmet2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/CharacterController.gd" type="Script" id=4]
 [ext_resource path="res://scripts/GameController.gd" type="Script" id=5]
-[ext_resource path="res://scripts/CharacterController.gd" type="Script" id=6]
-[ext_resource path="res://scripts/DamageZone.gd" type="Script" id=7]
 [ext_resource path="res://scripts/DamageZone.gd" type="Script" id=6]
 [ext_resource path="res://scenes/LevelText.tscn" type="PackedScene" id=7]
 
@@ -50,68 +48,69 @@ shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.836047, 0.548658, 0, -0.548658, 0.836047, 0.582, 28.8, 63.68 )
+current = true
 far = 800.0
 
 [node name="Zombie" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.941, 4.29131, 0 )
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 starting_state = "Zombie"
 
-[node name="Char" parent="Zombie" instance=ExtResource( 3 )]
+[node name="Char" parent="Zombie" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22 )
 
 [node name="NPCPassive" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.3247, -16 )
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 
-[node name="Char" parent="NPCPassive" instance=ExtResource( 3 )]
+[node name="Char" parent="NPCPassive" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
 
 [node name="NPCPassive2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -99, 10.3247, -16 )
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 
-[node name="Char" parent="NPCPassive2" instance=ExtResource( 3 )]
+[node name="Char" parent="NPCPassive2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
 
 [node name="NPCPassive3" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 10.3247, -16 )
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 
-[node name="Char" parent="NPCPassive3" instance=ExtResource( 3 )]
+[node name="Char" parent="NPCPassive3" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
 
 [node name="NPCPassive4" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 10.3247, -16 )
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 
-[node name="Char" parent="NPCPassive4" instance=ExtResource( 3 )]
+[node name="Char" parent="NPCPassive4" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
 
 [node name="NPCPassive5" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 10.3247, -16 )
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 
-[node name="Char" parent="NPCPassive5" instance=ExtResource( 3 )]
+[node name="Char" parent="NPCPassive5" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
 
 [node name="NPCGunner" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 10.3247, -16 )
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 starting_state = "Aggressive"
 
-[node name="Char" parent="NPCGunner" instance=ExtResource( 3 )]
+[node name="Char" parent="NPCGunner" instance=ExtResource( 1 )]
 transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -5.20145, 0 )
 
 [node name="Rifle" parent="NPCGunner/Char" instance=ExtResource( 2 )]
 transform = Transform( -2.5, 0, 3.77489e-07, 0, 2.5, 0, -3.77489e-07, 0, -2.5, 3, 0.20145, -1 )
 
-[node name="helmet" parent="NPCGunner/Char" instance=ExtResource( 1 )]
+[node name="helmet" parent="NPCGunner/Char" instance=ExtResource( 3 )]
 transform = Transform( 3.72, 0, 0, 0, 2.976, 0, 0, 0, 3.72, 0, 1.30145, -0.2 )
 
 [node name="Area" type="Area" parent="."]
 transform = Transform( 1.20105, 0, 0, 0, 1.20105, 0, 0, 0, 1.20105, 28, 2, -154 )
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 transform = Transform( 17.5978, 0, 0, 0, 17.5978, 0, 0, 0, 17.5978, 0, 0, 0 )
@@ -121,7 +120,7 @@ shape = SubResource( 4 )
 mesh = SubResource( 6 )
 material/0 = null
 
-[node name="LevelText" parent="." instance=ExtResource( 4 )]
+[node name="LevelText" parent="." instance=ExtResource( 7 )]
 
 [connection signal="body_entered" from="Area" to="Area" method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="Area" method="_on_Area_body_exited"]
