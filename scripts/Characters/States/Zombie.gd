@@ -47,6 +47,7 @@ func get_infection_damage():
 	
 func take_damage(damage):
 	print("ow " + str(current_health))
+	var is_zombie = true
 	emit_signal("infected", zomb_blood_splash, host.global_transform)
 	if current_health <= 0:
 		return
