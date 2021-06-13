@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/GretoonHighlight.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://fonts/From Cartoon Blocks.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/Gretoon.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://fonts/From Cartoon Blocks.ttf"
 
 [sub_resource type="DynamicFont" id=1]
 size = 43
 outline_size = 2
 outline_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
-font_data = ExtResource( 2 )
+font_data = SubResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 20
@@ -15,6 +18,14 @@ outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_top = 18
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 18
+outline_size = 2
+outline_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+extra_spacing_top = 13
+extra_spacing_space = 6
+font_data = ExtResource( 2 )
 
 [node name="LevelText" type="Node"]
 
@@ -29,12 +40,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FinishText" type="RichTextLabel" parent="."]
+[node name="RemainingText" type="RichTextLabel" parent="."]
+anchor_right = 0.532
+anchor_bottom = 0.214
+margin_left = 17.1349
+margin_top = 43.9724
+margin_right = -23.633
+margin_bottom = -31.4276
+custom_fonts/normal_font = SubResource( 2 )
+text = "- Humans Left to Meet:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Node" parent="."]
+
+[node name="GameOverTextTitle" type="RichTextLabel" parent="GameOver"]
 visible = false
-margin_left = 384.57
-margin_top = 191.324
-margin_right = 704.57
-margin_bottom = 431.324
+margin_left = 410.638
+margin_top = 190.483
+margin_right = 730.638
+margin_bottom = 430.483
+grow_horizontal = 0
+grow_vertical = 0
+custom_fonts/normal_font = SubResource( 1 )
+text = "Game over!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverText" type="RichTextLabel" parent="GameOver"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 287.82
+margin_top = 246.477
+margin_right = -218.18
+margin_bottom = -166.523
+grow_horizontal = 0
+grow_vertical = 0
+custom_fonts/normal_font = SubResource( 4 )
+text = "I guess humans prefer handshakes to handbites... Who could have known?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Finish" type="Node" parent="."]
+
+[node name="FinishTextTitle" type="RichTextLabel" parent="Finish"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 403.443
+margin_top = 167.679
+margin_right = -306.557
+margin_bottom = -384.321
 grow_horizontal = 0
 grow_vertical = 0
 custom_fonts/normal_font = SubResource( 1 )
@@ -43,13 +103,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RemainingText" type="RichTextLabel" parent="."]
-margin_left = 17.1349
-margin_top = 43.9724
-margin_right = 521.135
-margin_bottom = 96.9724
-custom_fonts/normal_font = SubResource( 2 )
-text = "- Humans Left to Meet:"
+[node name="FinishText" type="RichTextLabel" parent="Finish"]
+visible = false
+margin_left = 369.0
+margin_top = 227.0
+margin_right = 736.0
+margin_bottom = 443.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Time to socialize some more  in..."
 __meta__ = {
 "_edit_use_anchors_": false
 }

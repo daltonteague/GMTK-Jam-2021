@@ -57,7 +57,7 @@ func take_damage(damage):
 	
 	if current_health <= 0:
 		host.add_central_force(Vector3.UP * death_pop_force)
-		emit_signal("zombie_dead")
+		emit_signal("zombie_dead", self)
 		emit_signal("change_state", "Dead")
 		
 		
