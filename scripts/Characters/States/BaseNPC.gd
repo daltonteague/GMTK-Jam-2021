@@ -28,11 +28,6 @@ func exit():
 func _ready():
 	host.get_node("SightRadius").connect("area_entered", self, "_on_SightRadius_area_entered")
 	host.get_node("SightRadius").connect("area_exited", self, "_on_SightRadius_area_exited")
-	
-	print([start_skin.albedo_color.r, start_skin.albedo_color.g, start_skin.albedo_color.b])
-	print([zombie_skin.albedo_color.r, zombie_skin.albedo_color.g, zombie_skin.albedo_color.b])
-	print(host.get_node("Skin").get_mesh().surface_get_material(0))
-	
 
 func _process(delta):
 	current_health -= current_damage_per_frame
@@ -48,8 +43,6 @@ func _process(delta):
 func interpolate_skin_color():
 	var current_skin = host.get_node("Skin").get_mesh().surface_get_material(0).duplicate()
 	var percent_health = float(current_health) / max_health
-	
-#	print([zombie_skin.albedo_color.r, current_skin.albedo_color.r, percent_health])
 	
 	var new_color = lerp(zombie_skin.albedo_color, start_skin.albedo_color, percent_health)
 
@@ -80,13 +73,11 @@ func _on_InfectionRadius_area_exited(area):
 func _on_SightRadius_area_entered(area):
 	var zombie_state = get_zombie_state(area)
 	if zombie_state:
-		print(host.get_name() + " sees zombie")
 		closest_zombie = area.get_parent()
 
 func _on_SightRadius_area_exited(area):
 	var zombie_state = get_zombie_state(area)
 	if zombie_state:
-		print(host.get_name() + " lost sight of zombie")
 		move_vector = get_wander_vector()
 		closest_zombie = null
 	
