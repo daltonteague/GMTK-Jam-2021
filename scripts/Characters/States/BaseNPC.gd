@@ -9,12 +9,19 @@ var current_damage_per_frame = 0
 
 var closest_zombie
 var run_speed = 500
-var move_vector = get_wander_vector()
 
+var wander_timer = Timer.new()
+var wander_directions = [
+	Vector3.FORWARD, Vector3.BACK, Vector3.LEFT, Vector3.RIGHT] 
+
+var move_vector = get_wander_vector()
 
 func enter():
 	change_skin(start_skin)
-
+	wander_timer.connect("timeout", self, "get_wander_vector")
+	wander_timer.set_wait_time(5)
+	wander_timer.start()
+	
 func exit():
 	print("exiting base")
 	emit_signal("infected", blood_splash, host.global_transform)
@@ -90,4 +97,7 @@ func get_zombie_state(area):
 	return null
 	
 func get_wander_vector():
-	return Vector3.BACK * run_speed
+	randomize()
+	var direction = wander_directions[randi() % wander_directions.size()]
+	print("Wandering in direction " + str(direction))
+	return direction * run_speed * .8

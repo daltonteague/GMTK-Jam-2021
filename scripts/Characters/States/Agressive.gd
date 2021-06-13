@@ -4,6 +4,7 @@ onready var gun = host.get_node("Rifle")
 var gun_anim
 
 func enter():
+	current_health = 3000
 	if gun:
 		gun_anim = gun.get_node("AnimationPlayer")
 
