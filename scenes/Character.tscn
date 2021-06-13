@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/Characters/States/Passive.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Characters/States/Zombie.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scripts/Dead.gd" type="Script" id=6]
 [ext_resource path="res://scripts/Characters/States/Aggressive.gd" type="Script" id=7]
 [ext_resource path="res://scripts/effects/BloodSplashEmitter.gd" type="Script" id=8]
+[ext_resource path="res://scripts/effects/InfectionSound.gd" type="Script" id=10]
 
 [sub_resource type="CubeMesh" id=1]
 resource_local_to_scene = true
@@ -104,9 +105,13 @@ anims/Bounce = SubResource( 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 script = ExtResource( 8 )
 
+[node name="InfectionSound" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[connection signal="infected" from="States/Passive" to="InfectionSound" method="_on_Passive_infected"]
 [connection signal="infected" from="States/Passive" to="Spatial" method="_on_Passive_infected"]
 [connection signal="infected" from="States/Zombie" to="Spatial" method="_on_Zombie_infected"]
-[connection signal="area_entered" from="InfectionRadius" to="States/Aggressive" method="_on_InfectionRadius_area_entered"]
 [connection signal="area_entered" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_entered"]
-[connection signal="area_exited" from="InfectionRadius" to="States/Aggressive" method="_on_InfectionRadius_area_exited"]
+[connection signal="area_entered" from="InfectionRadius" to="States/Aggressive" method="_on_InfectionRadius_area_entered"]
 [connection signal="area_exited" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_exited"]
+[connection signal="area_exited" from="InfectionRadius" to="States/Aggressive" method="_on_InfectionRadius_area_exited"]
