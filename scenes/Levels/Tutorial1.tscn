@@ -1,0 +1,216 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/levels/Tutorial1.gd" type="Script" id=2]
+[ext_resource path="res://materials/obstacle.tres" type="Material" id=3]
+[ext_resource path="res://scripts/CharacterController.gd" type="Script" id=4]
+[ext_resource path="res://scenes/LevelText.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/CameraController.gd" type="Script" id=6]
+
+[sub_resource type="Environment" id=1]
+
+[sub_resource type="PhysicsMaterial" id=2]
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.282353, 0.341176, 0.0745098, 1 )
+
+[sub_resource type="PlaneMesh" id=6]
+material = SubResource( 5 )
+size = Vector2( 6, 6 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 0.6766, 0.0147195, 3 )
+
+[sub_resource type="CylinderMesh" id=8]
+
+[sub_resource type="CylinderShape" id=9]
+
+[node name="World" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.983741, -0.132659, 0.121058, -0.0272427, 0.556042, 0.830708, -0.177514, -0.820499, 0.543387, 0.0750313, 50.0728, 110.254 )
+environment = SubResource( 1 )
+far = 800.0
+script = ExtResource( 6 )
+
+[node name="Main Light" type="DirectionalLight" parent="."]
+transform = Transform( -0.835242, 0.488053, -0.253329, 0, 0.460696, 0.887558, 0.549883, 0.741325, -0.384792, -44.8697, 52.6073, -26.1294 )
+light_energy = 1.41
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_contact = 1.06
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 150.0
+
+[node name="Fill" type="DirectionalLight" parent="."]
+transform = Transform( 0.961254, -0.160588, 0.224059, -0.139511, 0.41762, 0.897848, -0.237755, -0.894318, 0.379035, 75.489, 91.1499, 36.8859 )
+light_color = Color( 0.992157, 0.803922, 0.505882, 1 )
+light_energy = 0.22
+shadow_enabled = true
+shadow_contact = 1.0
+
+[node name="LevelText" parent="." instance=ExtResource( 5 )]
+
+[node name="Area1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.42186, 4.10914, 25.0397 )
+
+[node name="Wall2" type="StaticBody" parent="Area1"]
+transform = Transform( 16, 0, 0, 0, 6, 0, 0, 0, 1, -2.28732, 4.9369, 60.1841 )
+physics_material_override = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area1/Wall2"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Area1/Wall2"]
+shape = SubResource( 4 )
+
+[node name="Wall3" type="StaticBody" parent="Area1"]
+transform = Transform( -2.62268e-06, 0, 1, 0, 6, 0, -60, 0, -4.37114e-08, 12.7605, 5.0942, -0.701027 )
+physics_material_override = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area1/Wall3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 2.27374e-12, 0, 1, -0.000403595, -2.98023e-07, -0.0519133 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Area1/Wall3"]
+shape = SubResource( 4 )
+
+[node name="Wall4" type="StaticBody" parent="Area1"]
+transform = Transform( -2.62268e-06, 0, 1, 0, 6, 0, -60, 0, -4.37114e-08, -17, 5, 0.076 )
+physics_material_override = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area1/Wall4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 1.59162e-12, 0, 1, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Area1/Wall4"]
+shape = SubResource( 4 )
+
+[node name="Ground" type="StaticBody" parent="Area1"]
+transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, -1.8246, 0.895149, 1.1184 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area1/Ground"]
+transform = Transform( 0.23, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, -0.00115156, 0.0161868, -0.0158365 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Area1/Ground"]
+shape = SubResource( 7 )
+
+[node name="Obstacle1" type="StaticBody" parent="Area1"]
+transform = Transform( -0.996661, 13.2786, -2.41818, -6.02924, -2.15549, 0.437169, 0.0403347, 5.90711, 5.59535, -1.64977, -0.538916, 0 )
+__meta__ = {
+"_editor_description_": "f"
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="Area1/Obstacle1"]
+transform = Transform( 1, 1.35042e-08, -1.53668e-08, 9.77889e-09, 1, 2.98023e-08, 3.25963e-09, -1.19209e-07, 1, -0.0173328, -0.439182, -2.40446 )
+mesh = SubResource( 8 )
+material/0 = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area1/Obstacle1"]
+shape = SubResource( 9 )
+
+[node name="Area2" type="Spatial" parent="."]
+transform = Transform( 0.663667, -0.0411846, -0.746894, 0.061937, 0.99808, 0, 0.74546, -0.0462603, 0.664944, -88.626, 0, -45.5132 )
+
+[node name="Ground2" type="StaticBody" parent="Area2"]
+transform = Transform( 108.351, 0, 0, 0, 1.18713, 0, 0, 0, 23.7426, -2.33127, -16.2119, -114.197 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area2/Ground2"]
+transform = Transform( 0.23, 2.91038e-11, 0, 5.96046e-08, 1, -1.78814e-07, 5.96046e-08, 8.71951e-08, 1, -0.00115156, 0.0161877, -0.0158367 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Area2/Ground2"]
+transform = Transform( 1, -9.53465e-07, -1.19209e-07, 9.53674e-07, 1, 0, 2.38419e-07, 2.41926e-10, 1, 0, 0, 0 )
+shape = SubResource( 7 )
+
+[node name="TallWall" type="StaticBody" parent="Area2"]
+transform = Transform( 74, 0, 0, 0, 9.758, 0, 0, 0, 1, -2.02343, -10.0738, -44 )
+physics_material_override = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area2/TallWall"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Area2/TallWall"]
+shape = SubResource( 4 )
+
+[node name="TallWall2" type="StaticBody" parent="Area2"]
+transform = Transform( 74, 0, 0, 0, 9.758, 0, 0, 0, 1, -2.02343, -10.0738, -187.29 )
+physics_material_override = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area2/TallWall2"]
+transform = Transform( 1, -1.16415e-09, -4.65661e-10, 1.49012e-08, 1, 4.65661e-10, -1.90735e-06, 0, 1, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Area2/TallWall2"]
+shape = SubResource( 4 )
+
+[node name="TallWall3" type="StaticBody" parent="Area2"]
+transform = Transform( -3.23464e-06, 0, 1, 0, 9.758, 0, -74, 0, -4.37114e-08, 71.476, -10.0738, -116.127 )
+physics_material_override = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area2/TallWall3"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Area2/TallWall3"]
+shape = SubResource( 4 )
+
+[node name="TallWall4" type="StaticBody" parent="Area2"]
+transform = Transform( -3.8147e-06, -6.25849e-07, 1, 2.86102e-06, 9.758, 0, -74, -8.9407e-08, 2.98023e-08, -76.5851, -8.23814, -113.808 )
+physics_material_override = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area2/TallWall4"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Area2/TallWall4"]
+shape = SubResource( 4 )
+
+[node name="Zombie" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.77131, 7.89617, 71.0836 )
+script = ExtResource( 4 )
+starting_state = "Zombie"
+
+[node name="Char" parent="Zombie" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Passive" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.3247, -16 )
+script = ExtResource( 4 )
+
+[node name="Char" parent="Passive" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.90905, -3.43121, 44.2298 )
+
+[node name="Passive3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.730206, -14.4767, -169.015 )
+script = ExtResource( 4 )
+
+[node name="Char" parent="Passive3" instance=ExtResource( 1 )]
+transform = Transform( 0.998695, 0, -0.0510636, 0, 1, 0, 0.0510636, 0, 0.998695, 8.11972, 0.246982, -13.3512 )
+
+[node name="Passive4" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6384, -14.4767, -169.015 )
+script = ExtResource( 4 )
+
+[node name="Char" parent="Passive4" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39452, 0.246982, 0.154297 )
+
+[node name="Passive5" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.730206, -14.4767, -169.015 )
+script = ExtResource( 4 )
+
+[node name="Char" parent="Passive5" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39452, 0.246982, 0.154297 )

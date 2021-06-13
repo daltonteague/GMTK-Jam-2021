@@ -14,7 +14,7 @@ func _process(delta):
 	
 	average /= zombies.size()
 	average = lerp(average, last_avg, smoothing_t)
-	average.y = start_pos.origin.y
+	average.y = 0
 	look_at_from_position(average + start_pos.origin, average, Vector3.UP)
 	
 	last_avg = average

@@ -1,6 +1,7 @@
 extends Spatial
 
 onready var levels = [
+	preload("res://scenes/Levels/Tutorial1.tscn"),
 	preload("res://scenes/Levels/CrabsInABucket_camera.tscn"),
 	preload("res://scenes/Levels/GunnerLevel.tscn"),
 	preload("res://scenes/Levels/LevelTwo.tscn")
