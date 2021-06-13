@@ -32,7 +32,7 @@ emission_on_uv2 = false
 [sub_resource type="SphereMesh" id=6]
 material = SubResource( 5 )
 
-[node name="World" type="Spatial"]
+[node name="World2" type="Spatial"]
 script = ExtResource( 5 )
 
 [node name="Ground" type="StaticBody" parent="."]
@@ -48,6 +48,7 @@ shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.836047, 0.548658, 0, -0.548658, 0.836047, 0.582, 28.8, 63.68 )
+current = true
 far = 800.0
 
 [node name="Zombie" type="Spatial" parent="."]

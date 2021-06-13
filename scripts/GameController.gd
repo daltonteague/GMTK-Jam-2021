@@ -14,7 +14,6 @@ func _ready():
 	count_humans()
 	set_label_text()
 	
-	
 func count_zombies():
 	for child in get_children():
 		if child.has_method("get_state") and child.get_state().get_name() == "Zombie":
@@ -50,7 +49,7 @@ func set_label_text():
 func set_finish_text():
 	$LevelText/FinishText.text = "Level Complete! Time to socialize some more in " + str(timer.get_wait_time())
 	$LevelText/FinishText.visible = true
-	
+
 func change_level():
 	print("timer timed out")
 	emit_signal("level_complete")
