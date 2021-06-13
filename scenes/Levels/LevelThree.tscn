@@ -1,7 +1,7 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/levels/LevelTwo.gd" type="Script" id=2]
+[ext_resource path="res://scripts/levels/LevelThree.gd" type="Script" id=2]
 [ext_resource path="res://materials/obstacle.tres" type="Material" id=3]
 [ext_resource path="res://scripts/CharacterController.gd" type="Script" id=4]
 [ext_resource path="res://scenes/LevelText.tscn" type="PackedScene" id=5]
@@ -32,7 +32,13 @@ albedo_color = Color( 0.298039, 0.384314, 0, 1 )
 [sub_resource type="CubeMesh" id=9]
 material = SubResource( 8 )
 
+[sub_resource type="BoxShape" id=26]
+
+[sub_resource type="BoxShape" id=27]
+
 [sub_resource type="BoxShape" id=25]
+
+[sub_resource type="BoxShape" id=28]
 
 [sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.282353, 0.341176, 0.0745098, 1 )
@@ -56,6 +62,10 @@ extents = Vector3( 3, 0.0147195, 3 )
 [sub_resource type="CylinderShape" id=16]
 
 [sub_resource type="Skin" id=17]
+
+[sub_resource type="CylinderShape" id=29]
+
+[sub_resource type="CylinderShape" id=30]
 
 [sub_resource type="CylinderMesh" id=18]
 
@@ -81,7 +91,7 @@ points = PoolVector3Array( 0, 0, 1.5, 0, 0, 1.5, 0, 0, 1.5, 0, 0, 1.5, 0, 0, 1.5
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.537565, 0.843222, 0, -0.843222, 0.537565, -54.4454, 36.0304, 251.236 )
+transform = Transform( 1, 0, 0, 0, 0.73749, 0.675358, 0, -0.675358, 0.73749, -54.4454, 19.0304, 251.236 )
 environment = SubResource( 1 )
 current = true
 far = 800.0
@@ -241,7 +251,8 @@ mesh = SubResource( 9 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Mound"]
-shape = SubResource( 5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 3.3, 0, 0, 1.52381 )
+shape = SubResource( 26 )
 
 [node name="Mound4" type="StaticBody" parent="Terrain"]
 transform = Transform( 30, 0, 0, 0, 38.7, 0, 0, 0, 31.5, 76.897, 7.8116, -98 )
@@ -253,7 +264,8 @@ mesh = SubResource( 9 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Mound4"]
-shape = SubResource( 5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 3.3, 0, 0, 1.52381 )
+shape = SubResource( 27 )
 
 [node name="Mound3" type="StaticBody" parent="Terrain"]
 transform = Transform( 30, 0, 0, 0, 9, 0, 0, 0, 31.5, 357.897, 7.8116, -9 )
@@ -278,7 +290,8 @@ mesh = SubResource( 9 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Mound2"]
-shape = SubResource( 5 )
+transform = Transform( 1, 0, 1.42109e-14, 0, 1, 0, -3.55271e-15, 0, 3.3, 0, 0, 1.52381 )
+shape = SubResource( 28 )
 
 [node name="Building16" type="StaticBody" parent="Terrain"]
 transform = Transform( 30, 0, 0, 0, 17.1, 0, 0, 0, 31.5, 141.897, 12.8116, -111 )
@@ -373,6 +386,7 @@ mesh = SubResource( 15 )
 material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Obstacle1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 16 )
 
 [node name="Obstacle2" type="StaticBody" parent="Terrain"]
@@ -402,7 +416,8 @@ mesh = SubResource( 15 )
 material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Obstacle3"]
-shape = SubResource( 16 )
+transform = Transform( 1.8, -6.70552e-08, -3.12924e-07, 1.95578e-08, 1.8, -8.9407e-08, 1.49012e-07, 0, 1.8, -3.28955, 6.33772, 1.94936 )
+shape = SubResource( 29 )
 
 [node name="Obstacle4" type="StaticBody" parent="Terrain"]
 transform = Transform( 0.708449, 3.88525, -5.8509, -4.82937, 8.9401, 0.442355, 3.67722, 10.9927, 1.70818, 24.4184, 5.3162, -34.0545 )
@@ -416,7 +431,8 @@ mesh = SubResource( 15 )
 material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain/Obstacle4"]
-shape = SubResource( 16 )
+transform = Transform( 2.40305, -1.24647, 1.11649, -0.100691, 2.202, 0.642045, -1.20697, -3.54348, 1.91333, 15.893, 8.87498, -5.85536 )
+shape = SubResource( 30 )
 
 [node name="Trees" type="Spatial" parent="Terrain"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -201, 0, -86 )
@@ -780,282 +796,258 @@ starting_state = "Zombie"
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46.7504, 0, 26.0493 )
 
 [node name="NPCGunner" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -81, 10.3247, 103 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -81, 17.3247, 103 )
 
 [node name="NPCGunner3" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -153, 10.3247, 18 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -153, 17.3247, 18 )
 
 [node name="NPCGunner15" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -153, 10.3247, 92 )
-
-[node name="NPCGunner16" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -240, 10.3247, -59 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -153, 17.3247, 92 )
 
 [node name="NPCGunner17" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -240, 10.3247, -145 )
-
-[node name="NPCGunner4" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -153, 10.3247, -95 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -240, 17.3247, -145 )
 
 [node name="NPCGunner5" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -77, 10.3247, -123 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -77, 17.3247, -123 )
 
 [node name="NPCGunner6" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 26.3247, -39 )
-
-[node name="NPCGunner7" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 26.3247, 294 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 33.3247, -39 )
 
 [node name="NPCGunner8" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 105, 26.3247, 294 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 105, 33.3247, 294 )
 
 [node name="NPCGunner9" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 349, 26.3247, 82 )
-
-[node name="NPCGunner10" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 349, 26.3247, 35 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 349, 33.3247, 82 )
 
 [node name="NPCGunner11" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 211, 26.3247, 103 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 211, 33.3247, 103 )
 
 [node name="NPCGunner12" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -108, 26.3247, -191 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -108, 33.3247, -191 )
 
 [node name="NPCGunner13" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 26.3247, -191 )
-
-[node name="NPCGunner14" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 26.3247, -191 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 33.3247, -191 )
 
 [node name="NPCGunner2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 30.3247, -67 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 37.3247, -67 )
 
 [node name="NPCGunner18" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 67, 81.3247, -67 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 67, 88.3247, -67 )
 
 [node name="NPCGunner19" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 67, 81.3247, -14 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 67, 88.3247, -14 )
 
 [node name="Passive" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 11.3247, 50 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 18.3247, 50 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive2" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2561, 11.3247, -16 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2561, 18.3247, -16 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive3" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 195.175, 11.3247, -27.8821 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 195.175, 18.3247, -27.8821 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive3" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive4" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 75.0467, 9.3247, 102.72 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 75.0467, 16.3247, 102.72 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive4" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive5" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2094, 9.3247, -86.2803 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2094, 16.3247, -86.2803 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive5" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -7, -9.872 )
 
 [node name="Passive6" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7781, 9.3247, -39.1625 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7781, 16.3247, -39.1625 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive6" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive7" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 124.077, 27.2862, -16 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 124.077, 34.2862, -16 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive7" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
 
 [node name="Passive8" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -106.179, 27.2862, 118 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -106.179, 34.2862, 118 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive8" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive10" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -106.179, 27.2862, 221 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -106.179, 34.2862, 221 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive10" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive11" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.1794, 27.2862, 221 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.1794, 34.2862, 221 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive11" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive12" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.1794, 27.2862, 195 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.1794, 34.2862, 195 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive12" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive13" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -104.179, 27.2862, 195 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -104.179, 34.2862, 195 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive13" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive14" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -104.179, 27.2862, 168 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -104.179, 34.2862, 168 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive14" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive15" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.1794, 27.2862, 168 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.1794, 34.2862, 168 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive15" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive16" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 56.8206, 27.2862, 168 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 56.8206, 34.2862, 168 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive16" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive17" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 56.8206, 27.2862, 116 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 56.8206, 34.2862, 116 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive17" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive18" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8206, 27.2862, 116 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8206, 34.2862, 116 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive18" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive19" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8206, 27.2862, 56 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8206, 34.2862, 56 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive19" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive20" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 103.821, 29.2862, 56 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 103.821, 36.2862, 56 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive20" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive21" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 103.821, 29.2862, -64 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 103.821, 36.2862, -64 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive21" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive22" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1794, 29.2862, -64 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1794, 36.2862, -64 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive22" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive23" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1794, 29.2862, 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1794, 36.2862, 10 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive23" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive24" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1794, 29.2862, -226 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1794, 36.2862, -226 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive24" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive25" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.8206, 29.2862, -226 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.8206, 36.2862, -226 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive25" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive26" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 91.8206, 29.2862, -226 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 91.8206, 36.2862, -226 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive26" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
-[node name="Passive27" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 163.821, 29.2862, -197 )
-script = ExtResource( 4 )
-
-[node name="Char" parent="Passive27" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
-
 [node name="Passive28" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 163.821, 29.2862, -197 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 163.821, 36.2862, -197 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive28" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive29" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 292.821, 29.2862, -197 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 292.821, 36.2862, -197 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive29" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
-[node name="Passive30" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 210.821, 29.2862, -222 )
-script = ExtResource( 4 )
-
-[node name="Char" parent="Passive30" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
-
 [node name="Passive31" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 210.821, 29.2862, -339 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 210.821, 36.2862, -339 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive31" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive32" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 210.821, 29.2862, -339 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 210.821, 36.2862, -339 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive32" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22, -9.872 )
 
 [node name="Passive9" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -225.748, 29.2862, -27.8821 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -225.748, 36.2862, -27.8821 )
 script = ExtResource( 4 )
 
 [node name="Char" parent="Passive9" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, -9.872 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.5, -0.866026, 0, 0.866026, 0.5, 0, 0, 0 )
+light_color = Color( 0.376471, 0.188235, 0.364706, 1 )
+light_energy = 3.61
