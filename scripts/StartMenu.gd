@@ -4,7 +4,7 @@ signal start_button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$StartButton/AnimationPlayer.play("Hover")
+	$Container/StartButton/AnimationPlayer.play("Hover")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -34,48 +34,64 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( -0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 441.247, 407.256 ), Vector2( 441.247, 404.41 ) ]
+"values": [ Vector2( 217.999, 267.875 ), Vector2( 217.999, 264.584 ) ]
 }
 
 [node name="Menu" type="Node"]
 script = ExtResource( 2 )
 
-[node name="Game Title" type="RichTextLabel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 419.0
-margin_top = 184.0
-margin_right = -274.0
-margin_bottom = -316.0
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.472
+anchor_right = 0.5
+anchor_bottom = 0.472
+margin_left = -282.759
+margin_top = -208.285
+margin_right = 257.241
+margin_bottom = 207.715
+
+[node name="Game Title" type="RichTextLabel" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -62.2613
+margin_top = -140.868
+margin_right = 437.739
+margin_bottom = 235.132
 custom_fonts/normal_font = SubResource( 1 )
 text = "You did it! "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text" type="RichTextLabel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 283.429
-margin_top = 245.837
-margin_right = -218.571
-margin_bottom = -142.163
+[node name="Text" type="RichTextLabel" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -197.832
+margin_top = -79.0311
+margin_right = 302.168
+margin_bottom = 296.969
 custom_fonts/normal_font = SubResource( 2 )
 text = "Congratulations, you've made so many new friends! Thanks for playing :)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RestartButton" type="Button" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 441.247
-margin_top = 406.749
-margin_right = -412.753
-margin_bottom = -140.238
+[node name="RestartButton" type="Button" parent="Control"]
+anchor_left = 0.568
+anchor_top = 0.5
+anchor_right = 0.568
+anchor_bottom = 0.5
+margin_left = -88.7209
+margin_top = 58.8692
+margin_right = 88.2798
+margin_bottom = 123.869
 custom_fonts/font = SubResource( 3 )
 text = "Back to Start"
 flat = true
@@ -83,17 +99,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RestartButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/RestartButton"]
 anims/Hover = SubResource( 4 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-show_behind_parent = true
-margin_right = 1020.0
-margin_bottom = 605.0
-color = Color( 0.537255, 0.168627, 0.168627, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="Control/RestartButton" to="." method="_on_RestartButton_pressed"]
