@@ -1,0 +1,159 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Rifle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Helmet2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/CharacterController.gd" type="Script" id=4]
+[ext_resource path="res://scripts/GameController.gd" type="Script" id=5]
+[ext_resource path="res://scripts/DamageZone.gd" type="Script" id=6]
+[ext_resource path="res://fonts/GretoonHighlight.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://fonts/From Cartoon Blocks.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.227451, 0.501961, 0.196078, 1 )
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 6, 6 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 8, 0.0147195, 8 )
+
+[sub_resource type="SphereShape" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+albedo_color = Color( 1, 0.141176, 0, 0.709804 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 0.76
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SphereMesh" id=6]
+material = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 43
+outline_size = 2
+outline_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = 18
+font_data = ExtResource( 7 )
+
+[node name="World" type="Spatial"]
+script = ExtResource( 5 )
+
+[node name="Ground" type="StaticBody" parent="."]
+transform = Transform( 23.672, 0, 0, 0, 23.672, 0, 0, 0, 23.672, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground"]
+transform = Transform( 2.7, 0, 0, 0, 2.7, 0, 0, 0, 2.7, -0.00115156, 0.0161868, -0.0158365 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+shape = SubResource( 3 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.836047, 0.548658, 0, -0.548658, 0.836047, 0.582, 28.8, 63.68 )
+far = 800.0
+
+[node name="Zombie" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.941, 4.29131, 0 )
+script = ExtResource( 4 )
+starting_state = "Zombie"
+
+[node name="Char" parent="Zombie" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22 )
+
+[node name="NPCPassive" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.3247, -16 )
+script = ExtResource( 4 )
+
+[node name="Char" parent="NPCPassive" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
+
+[node name="NPCPassive2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -99, 10.3247, -16 )
+script = ExtResource( 4 )
+
+[node name="Char" parent="NPCPassive2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
+
+[node name="NPCPassive3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 10.3247, -16 )
+script = ExtResource( 4 )
+
+[node name="Char" parent="NPCPassive3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
+
+[node name="NPCPassive4" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 10.3247, -16 )
+script = ExtResource( 4 )
+
+[node name="Char" parent="NPCPassive4" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
+
+[node name="NPCPassive5" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 10.3247, -16 )
+script = ExtResource( 4 )
+
+[node name="Char" parent="NPCPassive5" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
+
+[node name="NPCGunner" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 10.3247, -16 )
+script = ExtResource( 4 )
+starting_state = "Aggressive"
+
+[node name="Char" parent="NPCGunner" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -5.20145, 0 )
+
+[node name="Rifle" parent="NPCGunner/Char" instance=ExtResource( 2 )]
+transform = Transform( -2.5, 0, 3.77489e-07, 0, 2.5, 0, -3.77489e-07, 0, -2.5, 3, 0.20145, -1 )
+
+[node name="helmet" parent="NPCGunner/Char" instance=ExtResource( 3 )]
+transform = Transform( 3.72, 0, 0, 0, 2.976, 0, 0, 0, 3.72, 0, 1.30145, -0.2 )
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1.20105, 0, 0, 0, 1.20105, 0, 0, 0, 1.20105, 28, 2, -154 )
+script = ExtResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 17.5978, 0, 0, 0, 17.5978, 0, 0, 0, 17.5978, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area/CollisionShape"]
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 13.0397
+margin_top = 10.7224
+margin_right = 691.04
+margin_bottom = 89.7224
+custom_fonts/normal_font = SubResource( 7 )
+text = "Make some human friends!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RemainingText" type="RichTextLabel" parent="."]
+margin_left = 17.1349
+margin_top = 43.9724
+margin_right = 521.135
+margin_bottom = 96.9724
+custom_fonts/normal_font = SubResource( 8 )
+text = "- Humans Left to Meet:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="body_entered" from="Area" to="Area" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="Area" method="_on_Area_body_exited"]

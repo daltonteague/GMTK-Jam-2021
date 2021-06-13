@@ -8,7 +8,7 @@ var move_speed = 700
 var slowdown_speed = 2000
 var death_pop_force = 500
 
-var damage_per_frame = 10
+var damage_per_frame = 24
 
 signal zombie_dead
 

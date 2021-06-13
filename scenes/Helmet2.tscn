@@ -1,6 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://materials/Material.material" type="Material" id=1]
+[sub_resource type="SpatialMaterial" id=2]
+params_cull_mode = 2
+albedo_color = Color( 0.211765, 0.235294, 0, 1 )
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Sphere"
@@ -11,7 +13,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 2976,
-"material": ExtResource( 1 ),
+"material": SubResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 1984
