@@ -46,8 +46,11 @@ func _process(delta):
 func check_areas():
 	if sight_radius.get_overlapping_areas().size() > 0 and !closest_zombie:
 		_on_SightRadius_area_entered(sight_radius.get_overlapping_areas()[0])
-	if infection_radius.get_overlapping_areas().size() > 0 and current_damage_per_frame == 0:
-		_on_InfectionRadius_area_entered(infection_radius.get_overlapping_areas()[0])
+	if infection_radius.get_overlapping_areas().size() > 0 and current_damage_per_frame <= 0:
+		for area in infection_radius.get_overlapping_areas():
+			if get_zombie_state(area):
+				_on_InfectionRadius_area_entered(infection_radius.get_overlapping_areas()[0])
+				return
 	
 func interpolate_skin_color():
 	var current_skin = host.get_node("Skin").get_mesh().surface_get_material(0).duplicate()
@@ -100,5 +103,4 @@ func get_zombie_state(area):
 func get_wander_vector():
 	randomize()
 	var direction = wander_directions[randi() % wander_directions.size()]
-	print("Wandering in direction " + str(direction))
-	return direction * run_speed * .8
+	return direction * run_speed * .8 * 0
