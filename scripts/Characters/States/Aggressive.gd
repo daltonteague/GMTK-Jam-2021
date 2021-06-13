@@ -4,9 +4,12 @@ onready var gun = host.get_node("Rifle")
 var gun_anim
 
 func enter():
+	current_health = 3000
 	if gun:
 		gun_anim = gun.get_node("AnimationPlayer")
-
+func exit():
+	if gun:
+		gun.get_node("Flash").visible = false
 
 func _process(delta):
 	host.rotation.x = 0

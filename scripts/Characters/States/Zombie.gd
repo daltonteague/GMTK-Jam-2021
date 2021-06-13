@@ -1,5 +1,7 @@
 extends State
 
+onready var zomb_blood_splash = preload("res://scenes/GreenBloodSplash.tscn")
+
 export var skin : Material
 
 var move_speed = 1200
@@ -44,6 +46,8 @@ func get_infection_damage():
 	return damage_per_frame
 	
 func take_damage(damage):
+	print("ow " + str(current_health))
+	emit_signal("infected", zomb_blood_splash, host.global_transform)
 	if current_health <= 0:
 		return
 	current_health -= damage

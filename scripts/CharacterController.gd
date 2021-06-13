@@ -8,7 +8,7 @@ export var starting_state = "Passive"
 func _ready():
 	state_machine.change_state(starting_state)
 	
-func get_current_state():
+func get_state():
 	return state_machine.get_state()
 
 

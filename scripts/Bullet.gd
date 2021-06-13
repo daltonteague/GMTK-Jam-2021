@@ -24,8 +24,7 @@ func _on_Timer_timeout():
 		queue_free()
 
 func _on_Area_body_entered(body):
+	print("hit " + body.get_name())
 	if body.has_method("get_state") and body.get_state().has_method("take_damage"):
-		body.take_damage(DAMAGE)
+		body.get_state().take_damage(DAMAGE)
 		queue_free()
-
-	

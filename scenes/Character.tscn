@@ -6,21 +6,20 @@
 [ext_resource path="res://materials/Human.tres" type="Material" id=4]
 [ext_resource path="res://materials/Zombie.tres" type="Material" id=5]
 [ext_resource path="res://scripts/Dead.gd" type="Script" id=6]
-[ext_resource path="res://scripts/Characters/States/Agressive.gd" type="Script" id=7]
+[ext_resource path="res://scripts/Characters/States/Aggressive.gd" type="Script" id=7]
 [ext_resource path="res://scripts/effects/BloodSplashEmitter.gd" type="Script" id=8]
 
 [sub_resource type="CubeMesh" id=1]
 resource_local_to_scene = true
 material = ExtResource( 4 )
 
-[sub_resource type="Skin" id=6]
+[sub_resource type="Skin" id=2]
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=3]
 
-[sub_resource type="SphereShape" id=3]
+[sub_resource type="SphereShape" id=4]
 
-[sub_resource type="Animation" id=4]
-resource_name = "Bounce"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skin:transform")
 tracks/0/interp = 1
@@ -34,17 +33,29 @@ tracks/0/keys = {
 "values": [ Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 ), Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0 ), Transform( 3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0 ), Transform( 2.113, 0, 0, 0, 2.113, 0, 0, 0, 2.113, 0, 0, 0 ), Transform( 2, 0, 0, 0, 1.774, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.098, 0, 0, 0, 2, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "New Anim"
+[sub_resource type="Animation" id=6]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skin:transform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 1.623, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.715, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.113, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 1.774, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.098, 0, 0, 0, 2, 0, 0, 0 ) ]
+}
 
 [node name="BaseCharacter" type="RigidBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.61918, 0 )
+mass = 1.22449
 script = ExtResource( 3 )
 
 [node name="Skin" type="MeshInstance" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 mesh = SubResource( 1 )
-skin = SubResource( 6 )
+skin = SubResource( 2 )
 material/0 = null
 
 [node name="States" type="Node" parent="."]
@@ -68,14 +79,14 @@ script = ExtResource( 6 )
 
 [node name="RigidBody" type="CollisionShape" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="InfectionRadius" type="Area" parent="."]
 visible = false
 
 [node name="Collision" type="CollisionShape" parent="InfectionRadius"]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="SightRadius" type="Area" parent="."]
 transform = Transform( 8.25834, 0, 0, 0, 8.25834, 0, 0, 0, 8.25834, 0, 0, 0 )
@@ -83,16 +94,19 @@ visible = false
 
 [node name="Collision" type="CollisionShape" parent="SightRadius"]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Bounce = SubResource( 4 )
-"anims/New Anim" = SubResource( 5 )
+anims/Bounce = SubResource( 5 )
+"anims/New Anim" = SubResource( 6 )
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 script = ExtResource( 8 )
 
 [connection signal="infected" from="States/Passive" to="Spatial" method="_on_Passive_infected"]
+[connection signal="infected" from="States/Zombie" to="Spatial" method="_on_Zombie_infected"]
+[connection signal="area_entered" from="InfectionRadius" to="States/Aggressive" method="_on_InfectionRadius_area_entered"]
 [connection signal="area_entered" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_entered"]
+[connection signal="area_exited" from="InfectionRadius" to="States/Aggressive" method="_on_InfectionRadius_area_exited"]
 [connection signal="area_exited" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_exited"]
