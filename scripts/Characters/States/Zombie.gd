@@ -4,13 +4,16 @@ export var skin : Material
 
 var move_speed = 700
 var slowdown_speed = 2000
+var death_pop_force = 500
 
 var damage_per_frame = 10
+
+signal zombie_dead
 
 func enter():
 	print("entering zombo")
 	change_skin_color()
-	host.get_node("RunRadius").queue_free()
+	host.get_node("SightRadius").queue_free()
 	pass
 
 func _physics_process(delta):
@@ -48,3 +51,13 @@ func change_skin(material):
 
 func get_infection_damage():
 	return damage_per_frame
+	
+func take_damage(damage):
+	if current_health <= 0:
+		return
+	current_health -= damage
+	
+	if current_health <= 0:
+		host.add_central_force(Vector3.UP * death_pop_force)
+		emit_signal("zombie_dead")
+		emit_signal("change_state", "Dead")
