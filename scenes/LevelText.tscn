@@ -30,10 +30,10 @@ font_data = ExtResource( 2 )
 [node name="LevelText" type="Node"]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 13.0397
-margin_top = 10.7224
-margin_right = 691.04
-margin_bottom = 89.7224
+margin_left = 13.0
+margin_top = 11.0
+margin_right = 665.0
+margin_bottom = 68.0
 custom_fonts/normal_font = SubResource( 1 )
 text = "Make some human friends!"
 __meta__ = {
@@ -41,12 +41,14 @@ __meta__ = {
 }
 
 [node name="RemainingText" type="RichTextLabel" parent="."]
-anchor_right = 0.532
-anchor_bottom = 0.214
-margin_left = 17.1349
-margin_top = 43.9724
-margin_right = -23.633
-margin_bottom = -31.4276
+anchor_left = 0.025
+anchor_top = 0.114
+anchor_right = 0.025
+anchor_bottom = 0.114
+margin_left = 0.0106068
+margin_top = -0.0599594
+margin_right = 504.011
+margin_bottom = 52.94
 custom_fonts/normal_font = SubResource( 2 )
 text = "- Humans Left to Meet:"
 __meta__ = {

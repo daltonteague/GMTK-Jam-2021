@@ -4,7 +4,7 @@ signal restart_button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$RestartButton/AnimationPlayer.play("Hover")
+	$Control/RestartButton/AnimationPlayer.play("Hover")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

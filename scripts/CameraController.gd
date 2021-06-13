@@ -14,9 +14,12 @@ func _process(delta):
 	
 	average /= zombies.size()
 	average = lerp(average, last_avg, smoothing_t)
+	average.y = start_pos.origin.y
 	look_at_from_position(average + start_pos.origin, average, Vector3.UP)
 	
 	last_avg = average
 
 func get_zombies():
-	return get_tree().get_root().get_child(0).get_child(0).get_zombies()
+	for child in get_tree().get_root().get_child(0).get_children():
+		if child.has_method("get_zombies"):
+			return child.get_zombies()
