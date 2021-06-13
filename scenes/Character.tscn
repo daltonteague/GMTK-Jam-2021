@@ -17,7 +17,7 @@ material = ExtResource( 4 )
 
 [sub_resource type="SphereShape" id=3]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "Bounce"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skin:transform")
@@ -29,10 +29,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 1.623, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.715, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.113, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 1.774, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.098, 0, 0, 0, 2, 0, 0, 0 ) ]
+"values": [ Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 ), Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0 ), Transform( 3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0 ), Transform( 2.113, 0, 0, 0, 2.113, 0, 0, 0, 2.113, 0, 0, 0 ), Transform( 2, 0, 0, 0, 1.774, 0, 0, 0, 2, 0, 0, 0 ), Transform( 2, 0, 0, 0, 2.098, 0, 0, 0, 2, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "New Anim"
 
 [node name="BaseCharacter" type="RigidBody"]
@@ -40,7 +40,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.61918, 0 )
 script = ExtResource( 3 )
 
 [node name="Skin" type="MeshInstance" parent="."]
-transform = Transform( 2, 0, 0, 0, 2.0196, 0, 0, 0, 2, 0, 0, 0 )
+transform = Transform( 2, 0, 0, 0, 2.098, 0, 0, 0, 2, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -81,8 +81,8 @@ transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
 shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Bounce = SubResource( 5 )
-"anims/New Anim" = SubResource( 6 )
+anims/Bounce = SubResource( 4 )
+"anims/New Anim" = SubResource( 5 )
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
