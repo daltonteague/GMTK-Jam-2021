@@ -6,12 +6,11 @@
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
-params_blend_mode = 1
 params_billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_color = Color( 0, 0.235294, 0.0862745, 1 )
+albedo_color = Color( 0, 0.0941176, 0.0352941, 1 )
 albedo_texture = ExtResource( 1 )
 
 [sub_resource type="Curve" id=2]
