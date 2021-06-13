@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/Rifle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Helmet2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/CharacterController.gd" type="Script" id=4]
-[ext_resource path="res://scripts/GameController.gd" type="Script" id=5]
+[ext_resource path="res://scripts/levels/LevelOne.gd" type="Script" id=5]
 [ext_resource path="res://scripts/DamageZone.gd" type="Script" id=6]
 [ext_resource path="res://scenes/LevelText.tscn" type="PackedScene" id=7]
 

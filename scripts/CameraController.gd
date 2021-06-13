@@ -19,4 +19,4 @@ func _process(delta):
 	last_avg = average
 
 func get_zombies():
-	return get_tree().get_root().get_child(0).get_zombies()
+	return get_tree().get_root().get_child(0).get_child(0).get_zombies()
