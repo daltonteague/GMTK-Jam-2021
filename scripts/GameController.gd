@@ -31,5 +31,6 @@ func human_infected(_state):
 	set_label_text()
 
 func set_label_text():
-	$RemainingText.text = "- Humans Left to Meet: " + str(human_count)
+	if $RemainingText:
+		$RemainingText.text = "- Humans Left to Meet: " + str(human_count)
 	
