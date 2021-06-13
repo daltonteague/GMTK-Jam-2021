@@ -113,7 +113,6 @@ script = ExtResource( 10 )
 [connection signal="infected" from="States/Zombie" to="SoundEmitter" method="_on_Zombie_infected"]
 [connection signal="infected" from="States/Zombie" to="Spatial" method="_on_Zombie_infected"]
 [connection signal="infected" from="States/Aggressive" to="SoundEmitter" method="_on_Aggressive_infected"]
-[connection signal="area_entered" from="InfectionRadius" to="States/Aggressive" method="_on_InfectionRadius_area_entered"]
 [connection signal="area_entered" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_entered"]
 [connection signal="area_entered" from="InfectionRadius" to="States/Aggressive" method="_on_InfectionRadius_area_entered"]
 [connection signal="area_exited" from="InfectionRadius" to="States/Passive" method="_on_InfectionRadius_area_exited"]

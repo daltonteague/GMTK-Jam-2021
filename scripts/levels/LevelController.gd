@@ -46,6 +46,7 @@ func game_won():
 	victory_menu.connect("restart_button", self, "restart_game")
 	
 func restart_game():
+	current_level_idx = 0
 	start_menu = start_menu_scene.instance()
 	victory_menu.queue_free()
 	remove_child(victory_menu)
@@ -56,4 +57,5 @@ func exit_prev_level():
 	if current_level:
 		current_level.queue_free()
 		remove_child(current_level)
+		current_level = null
 	
