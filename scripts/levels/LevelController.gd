@@ -2,8 +2,8 @@ extends Spatial
 
 onready var levels = [
 	preload("res://scenes/Levels/CrabsInABucket_camera.tscn"),
-	preload("res://scenes/Levels/LevelTwo.tscn"),
-	preload("res://scenes/Levels/LevelThree.tscn")
+	preload("res://scenes/Levels/GunnerLevel.tscn"),
+	preload("res://scenes/Levels/LevelTwo.tscn")
 ]
 
 onready var start_menu = $StartMenu

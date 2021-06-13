@@ -24,9 +24,6 @@ func enter():
 	wander_timer.set_wait_time(5)
 	wander_timer.start()
 	
-func exit():
-	emit_signal("infected", blood_splash, host.global_transform)
-
 func _ready():
 	host.get_node("SightRadius").connect("area_entered", self, "_on_SightRadius_area_entered")
 	host.get_node("SightRadius").connect("area_exited", self, "_on_SightRadius_area_exited")
@@ -35,6 +32,7 @@ func _process(delta):
 	current_health -= current_damage_per_frame
 	if current_health <= 0:
 		anim_player.play("Bounce")
+		emit_signal("infected", blood_splash, host.global_transform)
 		emit_signal("change_state", "Zombie")
 	
 	if !closest_zombie:
@@ -46,11 +44,11 @@ func _process(delta):
 func check_areas():
 	if sight_radius.get_overlapping_areas().size() > 0 and !closest_zombie:
 		_on_SightRadius_area_entered(sight_radius.get_overlapping_areas()[0])
-	if infection_radius.get_overlapping_areas().size() > 0 and current_damage_per_frame <= 0:
-		for area in infection_radius.get_overlapping_areas():
-			if get_zombie_state(area):
-				_on_InfectionRadius_area_entered(infection_radius.get_overlapping_areas()[0])
-				return
+#	if infection_radius.get_overlapping_areas().size() > 0 and current_damage_per_frame <= 0:
+#		for area in infection_radius.get_overlapping_areas():
+#			if get_zombie_state(area):
+#				_on_InfectionRadius_area_entered(infection_radius.get_overlapping_areas()[0])
+#				return
 	
 func interpolate_skin_color():
 	var current_skin = host.get_node("Skin").get_mesh().surface_get_material(0).duplicate()
