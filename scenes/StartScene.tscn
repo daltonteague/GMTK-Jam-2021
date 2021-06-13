@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/CharacterController.gd" type="Script" id=2]
 [ext_resource path="res://scripts/GameController.gd" type="Script" id=3]
-[ext_resource path="res://scripts/DamageZone.gd" type="Script" id=4]
-[ext_resource path="res://scenes/Rifle.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.227451, 0.501961, 0.196078, 1 )
@@ -16,25 +14,11 @@ size = Vector2( 6, 6 )
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 3, 0.0147195, 3 )
 
-[sub_resource type="SphereShape" id=4]
-
-[sub_resource type="SpatialMaterial" id=5]
-flags_transparent = true
-albedo_color = Color( 1, 0.141176, 0, 0.709804 )
-emission_enabled = true
-emission = Color( 1, 0, 0, 1 )
-emission_energy = 0.76
-emission_operator = 0
-emission_on_uv2 = false
-
-[sub_resource type="SphereMesh" id=6]
-material = SubResource( 5 )
-
 [node name="World" type="Spatial"]
 script = ExtResource( 3 )
 
 [node name="Ground" type="StaticBody" parent="."]
-transform = Transform( 23.672, 0, 0, 0, 23.672, 0, 0, 0, 23.672, 0, 0, 0 )
+transform = Transform( 30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Ground"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00115156, 0.0161868, -0.0158365 )
@@ -44,10 +28,6 @@ material/0 = null
 [node name="CollisionShape" type="CollisionShape" parent="Ground"]
 shape = SubResource( 3 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.836047, 0.548658, 0, -0.548658, 0.836047, 0.582, 28.8, 52.68 )
-far = 800.0
-
 [node name="Zombie" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.941, 4.29131, 0 )
 script = ExtResource( 2 )
@@ -56,35 +36,13 @@ starting_state = "Zombie"
 [node name="Char" parent="Zombie" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22 )
 
+[node name="Camera" type="Camera" parent="Zombie"]
+transform = Transform( 1, 0, 0, 0, 0.589055, 0.808093, 0, -0.808093, 0.589055, 9.523, 37.9455, 44.9979 )
+far = 800.0
+
 [node name="Passive" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.3247, -16 )
 script = ExtResource( 2 )
 
 [node name="Char" parent="Passive" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -5.20145, 27 )
-
-[node name="Gunner" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 10.3247, -174.961 )
-script = ExtResource( 2 )
-starting_state = "Aggressive"
-
-[node name="Char" parent="Gunner" instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -5.20145, 0 )
-
-[node name="Rifle" parent="Gunner/Char" instance=ExtResource( 5 )]
-transform = Transform( -2.5, 0, 3.77489e-07, 0, 2.5, 0, -3.77489e-07, 0, -2.5, 3, 0.20145, -1 )
-
-[node name="Area" type="Area" parent="."]
-transform = Transform( 1.20105, 0, 0, 0, 1.20105, 0, 0, 0, 1.20105, 28, 2, -11 )
-script = ExtResource( 4 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
-transform = Transform( 17.5978, 0, 0, 0, 17.5978, 0, 0, 0, 17.5978, 0, 0, 0 )
-shape = SubResource( 4 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Area/CollisionShape"]
-mesh = SubResource( 6 )
-material/0 = null
-
-[connection signal="body_entered" from="Area" to="Area" method="_on_Area_body_entered"]
-[connection signal="body_exited" from="Area" to="Area" method="_on_Area_body_exited"]

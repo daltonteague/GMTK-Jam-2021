@@ -70,6 +70,8 @@ func _on_InfectionRadius_area_entered(area):
 
 func _on_InfectionRadius_area_exited(area):
 	current_damage_per_frame -= get_damage_if_zombie(area)
+	if current_damage_per_frame < 0:
+		current_damage_per_frame = 0
 		
 func _on_SightRadius_area_entered(area):
 	var zombie_state = get_zombie_state(area)
