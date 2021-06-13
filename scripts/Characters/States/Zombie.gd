@@ -3,6 +3,7 @@ extends State
 onready var zomb_blood_splash = preload("res://scenes/GreenBloodSplash.tscn")
 
 export var skin : Material
+export var dead_skin : Material
 
 var move_speed = 1200
 var boost_magnitude = 1200
@@ -16,6 +17,9 @@ func enter():
 	print("entering zombo")
 	change_skin(skin)
 	host.get_node("SightRadius").queue_free()
+
+func _process(delta):
+	interpolate_skin_color()
 
 func _physics_process(delta):
 	apply_player_input(delta)
@@ -46,14 +50,22 @@ func get_infection_damage():
 	return damage_per_frame
 	
 func take_damage(damage):
-	print("ow " + str(current_health))
-	var is_zombie = true
 	emit_signal("infected", zomb_blood_splash, host.global_transform)
-	if current_health <= 0:
-		return
+	
+	anim_player.play("Bounce")
 	current_health -= damage
 	
 	if current_health <= 0:
 		host.add_central_force(Vector3.UP * death_pop_force)
 		emit_signal("zombie_dead", self)
 		emit_signal("change_state", "Dead")
+		
+		
+func interpolate_skin_color():
+	var current_skin = host.get_node("Skin").get_mesh().surface_get_material(0).duplicate()
+	var percent_health = float(current_health) / max_health
+	
+	var new_color = lerp(dead_skin.albedo_color, skin.albedo_color, percent_health)
+
+	current_skin.albedo_color = new_color
+	host.get_node("Skin").get_mesh().surface_set_material(0, current_skin)
